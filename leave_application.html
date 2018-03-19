@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>leave application</title>
+    </head>
+    <body>
+        <form method="post" action="leave_application.php">
+            <p>select the leave_type</p>
+            leave_type:<select name="Leave_type">
+                <option value="casual_leaves">casual leave</option>
+                <option value="medical_leaves">meadical leave</option>
+                <option value="on_duty_leaves">on duty leave</option>
+                <option value="maternity_leaves">maternity leave</option>
+                <option value="academic_leaves">academic leave</option>
+                </select>
+                </br>
+            from date<input type="date" name="from_date" id="from_date"></br>
+            to date<input type="date" name="to_date" id="to_date"></br>
+            no of days<input type="text" name="no_of_days" id="no_of_days"></br>
+                <script>
+                    document.getElementById("no_of_days").addEventListener("click", myfunction);
+                    function myfunction()
+                    {
+                        var d = new Date();
+                        var currentDate=Date.parse(d);
+                        var startDate = Date.parse(document.getElementById("from_date").value);
+                        var endDate = Date.parse(document.getElementById("to_date").value);
+                        var timeDiff = endDate - startDate;
+                        var daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                        var fromTimeDiff = startDate-currentDate;
+                        var fromDaysDiff = Math.floor(fromTimeDiff/(1000 * 60 * 60 * 24));
+                       if(fromDaysDiff<-1)
+                        {
+                            alert("from date should be greater than equal to current date");
+                        }
+                        else if(daysDiff<=0)
+                        {
+                            alert("todate should be greater than from date");
+                        }
+                        else
+                        {
+                            document.getElementById("no_of_days").value=daysDiff;
+                        }
+                    }
+                </script>
+            description<input type="text" name="description"></br>
+            <input type="submit" value="Apply">
+        </form>
+    </body>
+</html>
+
